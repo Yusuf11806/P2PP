@@ -378,7 +378,7 @@ function renderBuddies(users) {
     if (currentUser?.hasProfile) students.sort((a, b) => b.score - a.score);
 
     if (!students.length) {
-        buddyList.innerHTML = '<div class="empty-state"><div class="empty-icon">Ã¢â€”Å½</div><h3>No study friends yet</h3><p>Students who complete a profile will appear here. Your BINUS-assigned mentor is shown separately above.</p></div>';
+        buddyList.innerHTML = '<div class="empty-state"><div class="empty-icon">&#x25CE;</div><h3>No study friends yet</h3><p>Students who complete a profile will appear here. Your BINUS-assigned mentor is shown separately above.</p></div>';
         return;
     }
 
@@ -409,7 +409,7 @@ function renderBuddies(users) {
                 </div>
             </div>
             <div class="action-block">
-                ${online ? (roomLink ? `<a href="${escapeHTML(roomLink)}" target="_blank" rel="noopener noreferrer" class="room-btn">Launch Space Ã¢â€ â€™</a>` : '<div class="location-display-box">No room link provided</div>') : `<div class="location-display-box"><strong>Campus</strong><br>${escapeHTML(profile.location || 'Campus')}</div>`}
+                ${online ? (roomLink ? `<a href="${escapeHTML(roomLink)}" target="_blank" rel="noopener noreferrer" class="room-btn">Launch Space &rarr;</a>` : '<div class="location-display-box">No room link provided</div>') : `<div class="location-display-box"><strong>Campus</strong><br>${escapeHTML(profile.location || 'Campus')}</div>`}
                 <button class="chat-btn" type="button">Message Study Friend</button>
             </div>`;
         card.querySelector('.chat-btn').addEventListener('click', () => openChatWidget(peer.id, profile.name || 'Study friend'));
@@ -436,7 +436,7 @@ function renderAssignedMentor() {
     const name = document.createElement('strong');
     name.textContent = mentor.profile?.name || 'Student mentor';
     const detail = document.createElement('span');
-    detail.textContent = `NIM: ${mentor.nim || 'Not provided'}${mentor.profile?.major ? ` Ã‚Â· ${mentor.profile.major}` : ''}`;
+    detail.textContent = `NIM: ${mentor.nim || 'Not provided'}${mentor.profile?.major ? ` - ${mentor.profile.major}` : ''}`;
     identity.append(name, detail);
     content.append(identity);
     if (mentor.profile?.bio) {
@@ -463,7 +463,7 @@ function fillAccountSelect(select, users, placeholder) {
     users.forEach(user => {
         const option = document.createElement('option');
         option.value = user.id;
-        option.textContent = `${user.profile?.name || 'Profile not completed'} Ã‚Â· ${user.nim || 'NIM missing'} Ã‚Â· ${user.email}`;
+        option.textContent = `${user.profile?.name || 'Profile not completed'} - ${user.nim || 'NIM missing'} - ${user.email}`;
         select.append(option);
     });
     select.disabled = users.length === 0;
